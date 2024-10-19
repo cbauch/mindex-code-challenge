@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Notes: I added JsonViews to support the new views added to the data object.
- * I am only returning a Summary with a get as that is likely to be the busier
- * endpoint. The create and update endpoints are likely to be less used and
- * more likely to need more data (such as in an Employee editor interface).
+ * Applicant Note: I added JsonViews to support the new views added to the data
+ * object. I am only returning a Summary with a get as that is likely to be the
+ * busier endpoint. The create and update endpoints are likely to be less used
+ * and more likely to need more data (such as in an Employee editor interface).
  */
 @RestController
 public class EmployeeController {

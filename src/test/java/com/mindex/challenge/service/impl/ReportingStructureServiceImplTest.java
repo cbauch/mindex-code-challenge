@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mindex.challenge.data.ReportingStructure;
@@ -51,5 +52,11 @@ public class ReportingStructureServiceImplTest {
         assertEquals(bottomReportingStructure.getNumberOfReports(), 0);
         assertEquals(bottomReportingStructure.getEmployee().getEmployeeId(), "62c1084e-6e34-4630-93fd-9153afb65309");
         assertEquals(bottomReportingStructure.getEmployee().getDirectReports().size(), 0);
+
+        // Get employee who does not exist
+        HttpStatusCode errorCode = restTemplate
+                .getForEntity(reportingUrl, ReportingStructure.class, "00000000-0000-0000-0000-000000000000")
+                .getStatusCode();
+        assertEquals(errorCode.value(), 500);
     }
 }

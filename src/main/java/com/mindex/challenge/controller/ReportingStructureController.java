@@ -32,7 +32,7 @@ public class ReportingStructureController {
     @GetMapping("/reporting-structure/employee/{employeeId}")
     @JsonView(Views.Full.class)
     public ReportingStructure read(@PathVariable String employeeId) {
-        LOG.debug("Received employee for get Reporting Structre Request with employeeId [{}]", employeeId);
+        LOG.debug("Received employee for get Reporting Structure Request with employeeId [{}]", employeeId);
 
         return reportingStructureService.read(employeeId);
     }

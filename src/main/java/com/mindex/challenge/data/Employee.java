@@ -3,6 +3,7 @@ package com.mindex.challenge.data;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.convert.LazyLoadingProxy;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
@@ -41,6 +42,10 @@ public class Employee {
     @DocumentReference(lazy = true)
     @JsonView(Views.Full.class)
     private List<Employee> directReports;
+
+    @DocumentReference(lazy = true)
+    @JsonView(Views.Confidential.class)
+    private Compensation compensation;
 
     public Employee() {
     }
@@ -91,5 +96,15 @@ public class Employee {
 
     public void setDirectReports(List<Employee> directReports) {
         this.directReports = directReports;
+    }
+
+    public Compensation getCompensation() {
+        return compensation instanceof LazyLoadingProxy
+                ? (Compensation) ((LazyLoadingProxy) compensation).getTarget()
+                : compensation;
+    }
+
+    public void setCompensation(Compensation compensation) {
+        this.compensation = compensation;
     }
 }

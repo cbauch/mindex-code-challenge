@@ -16,4 +16,10 @@ public class Views {
      */
     public static class Full extends Summary {
     }
+
+    /**
+     * Confidential includes Full and adds confidential information.
+     */
+    public static class Confidential extends Full {
+    }
 }
